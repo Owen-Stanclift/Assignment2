@@ -1,3 +1,5 @@
+using Codice.Client.Commands;
+using GluonGui.WorkspaceWindow.Views.WorkspaceExplorer.Explorer;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,16 +7,20 @@ using UnityEngine.InputSystem;
 
 public class Gun : MonoBehaviour
 {
+    public Particle2D[] bullet;
+    public static Particle2D currBullet;
+    public static GameObject currWeapon;
     /// <summary>
     /// The direction of the initial velocity of the fired projectile. That is,
     /// this is the direction the gun is aiming in.
     /// </summary>
+
     public Vector3 FireDirection
     {
         get
         {
             // TODO: YOUR CODE HERE
-            return Vector3.zero;
+            return this.transform.eulerAngles;
         }
     }
 
@@ -27,7 +33,8 @@ public class Gun : MonoBehaviour
         get
         {
             // TODO: YOUR CODE HERE
-            return Vector3.zero;
+            Vector2 pos = this.transform.position;
+            return pos;
         }
     }
 
@@ -40,7 +47,7 @@ public class Gun : MonoBehaviour
         get
         {
             // TODO: YOUR CODE HERE
-            return null;
+            return currBullet.gameObject;
         }
     }
 
@@ -52,7 +59,10 @@ public class Gun : MonoBehaviour
     public GameObject Fire()
     {
         // TODO: YOUR CODE HERE
-        return null;
+        GameObject newBullet = currBullet.gameObject;
+        newBullet.transform.position = SpawnPosition;
+        newBullet.transform.eulerAngles = FireDirection;
+        return newBullet;
     }
 
     /// <summary>
@@ -63,11 +73,28 @@ public class Gun : MonoBehaviour
     /// </summary>
     public void CycleNextWeapon()
     {
+
         // TODO: YOUR CODE HERE
     }
 
     void Update()
     {
         // TODO: YOUR CODE HERE (handle all input in Update, not FixedUpdate!)
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            CycleNextWeapon();
+        }
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            Fire();
+        }
+        if(!Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            this.transform.Rotate(0, 0, 1);
+        }
+        if (!Input.GetKeyDown(KeyCode.Alpha2))
+        {
+
+        }
     }
 }
