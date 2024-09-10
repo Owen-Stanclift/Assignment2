@@ -231,6 +231,26 @@ PrefabInstance:
       propertyPath: machineGun
       value: 
       objectReference: {fileID: 9001021178989259330, guid: 706350e311f1674459939a40552369ec, type: 3}
+    - target: {fileID: -6034438818361066306, guid: 9c4692a3184f446e4a379adef7110d76, type: 3}
+      propertyPath: bullet.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -6034438818361066306, guid: 9c4692a3184f446e4a379adef7110d76, type: 3}
+      propertyPath: bullet.Array.data[0]
+      value: 
+      objectReference: {fileID: 7480456240513016854, guid: 1979970f487c9426688fdb3e1f7b5493, type: 3}
+    - target: {fileID: -6034438818361066306, guid: 9c4692a3184f446e4a379adef7110d76, type: 3}
+      propertyPath: bullet.Array.data[1]
+      value: 
+      objectReference: {fileID: 7480456240513016854, guid: 67983372377f81b45bf2a82afa5e32e1, type: 3}
+    - target: {fileID: -6034438818361066306, guid: 9c4692a3184f446e4a379adef7110d76, type: 3}
+      propertyPath: bullet.Array.data[2]
+      value: 
+      objectReference: {fileID: 7480456240513016854, guid: 957d9a00f0a5e244ebdbd92fe3130c92, type: 3}
+    - target: {fileID: -6034438818361066306, guid: 9c4692a3184f446e4a379adef7110d76, type: 3}
+      propertyPath: bullet.Array.data[3]
+      value: 
+      objectReference: {fileID: 7480456240513016854, guid: 9440f42c8ef18cf4fa500be86130891a, type: 3}
     - target: {fileID: 2842070255662269805, guid: 9c4692a3184f446e4a379adef7110d76, type: 3}
       propertyPath: m_RootOrder
       value: 1

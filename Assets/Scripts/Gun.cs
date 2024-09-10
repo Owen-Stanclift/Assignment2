@@ -8,8 +8,7 @@ using UnityEngine.InputSystem;
 public class Gun : MonoBehaviour
 {
     public Particle2D[] bullet;
-    public static Particle2D currBullet;
-    public static GameObject currWeapon;
+    public static int currBullet;
     /// <summary>
     /// The direction of the initial velocity of the fired projectile. That is,
     /// this is the direction the gun is aiming in.
@@ -47,7 +46,7 @@ public class Gun : MonoBehaviour
         get
         {
             // TODO: YOUR CODE HERE
-            return currBullet.gameObject;
+            return bullet[currBullet].gameObject;
         }
     }
 
@@ -59,7 +58,7 @@ public class Gun : MonoBehaviour
     public GameObject Fire()
     {
         // TODO: YOUR CODE HERE
-        GameObject newBullet = currBullet.gameObject;
+        GameObject newBullet = CurrentWeapon;
         newBullet.transform.position = SpawnPosition;
         newBullet.transform.eulerAngles = FireDirection;
         return newBullet;
@@ -73,7 +72,14 @@ public class Gun : MonoBehaviour
     /// </summary>
     public void CycleNextWeapon()
     {
-
+        if(currBullet == 3)
+        {
+            currBullet = 0;
+        }
+        else
+        {
+            currBullet++;
+        }
         // TODO: YOUR CODE HERE
     }
 
@@ -86,15 +92,15 @@ public class Gun : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Return))
         {
-            Fire();
+            Instantiate(Fire());
         }
-        if(!Input.GetKeyDown(KeyCode.Alpha1))
+        if(Input.GetKey(KeyCode.Alpha1))
         {
             this.transform.Rotate(0, 0, 1);
         }
-        if (!Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKey(KeyCode.Alpha2))
         {
-
+            this.transform.Rotate(0, 0, -1);
         }
     }
 }
