@@ -8,7 +8,8 @@ public static class Integrator
     {
         // TODO: YOUR CODE HERE
 
-        particle.velocity += particle.gravity * Time.deltaTime;
-        particle.transform.Translate(Vector3.up * (particle.velocity*particle.damping) * Time.deltaTime);
+        particle.transform.position += (Vector3)(particle.velocity) * dt;
+        particle.velocity *= Mathf.Pow(particle.damping, dt);
+        particle.velocity += particle.acceleration * dt;
     }
 }

@@ -19,7 +19,9 @@ public class Gun : MonoBehaviour
         get
         {
             // TODO: YOUR CODE HERE
-            return this.transform.eulerAngles;
+            Vector3 direction = SpawnPosition - this.transform.position;
+            direction.Normalize();
+            return direction;
         }
     }
 
@@ -32,7 +34,7 @@ public class Gun : MonoBehaviour
         get
         {
             // TODO: YOUR CODE HERE
-            Vector2 pos = this.transform.position;
+            Vector3 pos = this.transform.position;
             return pos;
         }
     }
@@ -59,8 +61,8 @@ public class Gun : MonoBehaviour
     {
         // TODO: YOUR CODE HERE
         GameObject newBullet = CurrentWeapon;
-        newBullet.transform.position = SpawnPosition;
-        newBullet.transform.eulerAngles = FireDirection;
+        Instantiate(newBullet,SpawnPosition,Quaternion.identity);
+        newBullet.GetComponent<Particle2D>().velocity = FireDirection;
         return newBullet;
     }
 
@@ -86,21 +88,21 @@ public class Gun : MonoBehaviour
     void Update()
     {
         // TODO: YOUR CODE HERE (handle all input in Update, not FixedUpdate!)
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Keyboard.current.wKey.wasPressedThisFrame)
         {
             CycleNextWeapon();
         }
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Keyboard.current.enterKey.wasPressedThisFrame)
         {
-            Instantiate(Fire());
+            Fire();
         }
-        if(Input.GetKey(KeyCode.Alpha1))
+        if(Keyboard.current.digit1Key.wasPressedThisFrame)
         {
-            this.transform.Rotate(0, 0, 1);
+            this.transform.Rotate(Vector3.forward, 1f * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.Alpha2))
+        if (Keyboard.current.digit2Key.wasPressedThisFrame)
         {
-            this.transform.Rotate(0, 0, -1);
+            this.transform.Rotate(Vector3.back, 1f * Time.deltaTime);
         }
     }
 }

@@ -1,15 +1,17 @@
-using System.Numerics;
+
 using UnityEngine;
 
 public class Particle2D : MonoBehaviour
 {
-    public float velocity;
+    public Vector2 velocity;
     public float inverseMass;
-    public float gravity;
+    public Vector2 acceleration;
     public float damping;
     // TODO: YOUR CODE HERE!
-    private void Update()
+    private void FixedUpdate()
     {
-        Integrator.Integrate(this, Time.deltaTime);
+        Integrator.Integrate(this, Time.fixedDeltaTime);
     }
+    
+
 }
